@@ -174,10 +174,22 @@ print(f'Accuracy score is {lr.score(X_test, y_test):.2f}/1 \n')
 print('Classification report\n')
 print(classification_report(y_test, predicted_values))
 print('Confusion matrix\n')
-print(confusion_matrix(y_test, predicted_values))
+cfm = confusion_matrix(y_test, predicted_values)
+true_negative = cfm[0][0]
+false_positive = cfm[0][1]
+false_negative = cfm[1][0]
+true_positive = cfm[1][1]
+
+print('Confusion Matrix: \n', cfm, '\n')
+print('True Negative:', true_negative)
+print('False Positive:', false_positive)
+print('False Negative:', false_negative)
+print('True Positive:', true_positive)
+print('Correct Predictions',
+      round((true_negative + true_positive) / len(predicted_values) * 100, 1), '%')
+
 print('Overal f1-score\n')
 print(f1_score(y_test, predicted_values, average="macro"))
-
 
 # ************************************
 # ******** Cross Validation **********

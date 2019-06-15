@@ -9,6 +9,6 @@ RUN pip3 install numpy pandas argparse matplotlib seaborn plotly sklearn
 WORKDIR /app
 
 COPY "classification_analysis.py" /app
-COPY "figures/*" /app/figures
+COPY "figures/*" /app/figures/
 
 ENTRYPOINT ["python3","-u","./classification_analysis.py"]

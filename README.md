@@ -122,6 +122,9 @@ First we need to split the data and we use the ratio of 0.35. In our case the tr
         
         X_train.shape : (369, 30), y_train.shape : (369,)
         X_test.shape : (200, 30), y_test.shape : (200,)
+
+Then the train dataset is fitted to the Logistic Regression Model which presents the following information:
+        
         Intercept per class: [0.24865834]
              
         Coeficients per class: [[-0.29977415 -0.52960362 -0.32794625 -0.43076019  0.04923918  0.35786804
@@ -130,34 +133,43 @@ First we need to split the data and we use the ratio of 0.35. In our case the tr
                 0.20599237  0.60046117 -0.83368415 -0.95678081 -0.72914745 -0.86124086
                -0.88889321 -0.05175214 -0.75131017 -0.89889266 -0.4511914  -0.47978468]]
 
-After applying the Logistic Regression Model we have an accuracy score of 98% 
+### Results
+After applying the model to Test dataset, we can evaluate the accuracy of our predictions by checking out the Classification report and the confusion matrix.
        
        Classification report
        
-                     precision    recall  f1-score   support
-       
-                  0       1.00      0.96      0.98        74
-                  1       0.98      1.00      0.99       126
-       
-           accuracy                           0.98       200
-          macro avg       0.99      0.98      0.98       200
-       weighted avg       0.99      0.98      0.98       200
+              precision    recall  f1-score   support
+
+           0       0.96      0.95      0.95        76
+           1       0.97      0.98      0.97       124
+
+    accuracy                           0.96       200
+    macro avg      0.96      0.96      0.96       200
+    weighted avg   0.96      0.96      0.96       200
 
 
+        Confusion Matrix: 
+            [[ 72   4]
+            [  3 121]] 
 
-### Results
+        True Negative: 72
+        False Positive: 4
+        False Negative: 3
+        True Positive: 121
+    
+        Correct Predictions 96.5 %
+        
+        Overal f1-score : 0.9627649671533818
 
-Brief (2 paragraph) description about your results. Include:
-
-- At least 1 figure
-- At least 1 "value" that summarizes either your data or the "performance" of your method
-- A short explanation of both of the above
+Our model have accurately labeled 96.5% of the test data. We could try to increase the accuracy even higher by using a different algorithm other than the 
+logistic regression for example Super Vector Machines, Nave Bayes, Decision Trees, Neural Networds among others; or try our model with different set of variables. 
 
 ### Discussion
-Brief (no more than 1-2 paragraph) description about what you did. Include:
 
-- interpretation of whether your method "solved" the problem
-- suggested next step that could make it better.
+The Logistic Regression Model is one of the simple algorithm to predict a categorical variable. And in this case, it gives us the accuracy of 96.5% that is very important.
+As part of the academic studies of how to apply, understand and interpret a machine learning algorithm, the logistic regression model is a good way to start.
+Nowadays there are many machine learning algorithms, each one with its pros and cons. I would like to modify some parameters of PCA, the size of the training dataset and or 
+other parameter of the model in order to learn more how is the impact in the results and the accuracy, but that would be in a near future. 
 
 
 ### References
@@ -165,3 +177,4 @@ https://scikit-learn.org/stable/datasets/index.html#breast-cancer-wisconsin-diag
 https://www.cancer.ca/en/cancer-information/cancer-type/breast/statistics/?region=on
 https://towardsdatascience.com/dive-into-pca-principal-component-analysis-with-python-43ded13ead21
 https://rstudio-pubs-static.s3.amazonaws.com/344010_1f4d6691092d4544bfbddb092e7223d2.html
+https://www.kaggle.com/leemun1/predicting-breast-cancer-logistic-regression
