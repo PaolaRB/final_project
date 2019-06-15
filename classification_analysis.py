@@ -28,40 +28,69 @@ print(f'keys: {cancer.keys()}')
 
 tmp = np.c_[cancer.data, cancer.target]
 cancer_df = pd.DataFrame(tmp, columns=feature_names)
+cancer_df['target'] = cancer_df['target'].apply(lambda x: 0 if x == 1 else 1)
 print(cancer_df.head())
 print(cancer_df.iloc[:,:6].describe())
 
-CONST_B = 1; CONST_M = 0
+CONST_B = 0; CONST_M = 1
 cancer_df['diagnosis_ds'] = cancer_df['target'].map({CONST_B: 'Benign', CONST_M: 'Malignant'})
 base_columns = ['radius', 'texture', 'perimeter', 'area', 'smoothness', 'compactness', 'concavity', 'concave points', 'symmetry', 'fractal dimension']
 
 
 
 
-def get_ax(df, column_name, suffix, x, label_group):
-    if suffix == "error":
-        s_column = f'{column_name} {suffix}'
-    else:
-        s_column = f'{suffix} {column_name}'
-    sns.distplot(df[df['target'] == CONST_B][s_column], bins=10, kde=False, ax=axes[x, 0],
-                 color='royalblue', label='Benign')
-    sns.distplot(df[df['target'] == CONST_M][s_column], bins=10, kde=False, ax=axes[x, 0],
-                 color='orange', label='Malignant')
-    axes[x, 0].set_xlabel(column_name + ': Benign and Malignant')
-    axes[x, 0].set_ylabel(label_group)
-    #
-    sns.distplot(df[df['target'] == CONST_B][s_column], bins=10, kde=False, ax=axes[x, 1],
-                 color='royalblue', label='Benign')
-    axes[x, 1].set_xlabel(column_name + ': Benign')
-    #
-    sns.distplot(df[df['target'] == CONST_M][s_column], bins=10, kde=False, ax=axes[x, 2],
-                 color='orange', label='Malignant')
-    axes[x, 2].set_xlabel(column_name + ': Malignant')
-    #
-    sns.boxplot(x=df['diagnosis_ds'], y=df[s_column], ax=axes[x, 3], order=['Benign', 'Malignant'])
-    axes[x, 3].set_xlabel('Diagnosis')
-    axes[x, 3].set_ylabel("")
-    return axes[x, 3]
+######################################
+# ### Visualization
+######################################
+
+# count of obs in each class
+benign, malignant = cancer_df['target'].value_counts()
+print('Number of cells class 0 - Benign:', benign)
+print('Number of cells class 1- Malignant : ', malignant)
+print('')
+print('% of cells class 0 - Benign', round(benign / len(cancer_df) * 100, 2), '%')
+print('% of cells class 1 - Malignant', round(malignant / len(cancer_df) * 100, 2), '%')
+
+# Countplot
+plt.figure(figsize=(6, 3))
+sns.countplot(cancer_df['target'])
+plt.savefig('figures/countplot.png')
+plt.close()
+
+# Heatmap
+fig, ax = plt.subplots(figsize=(10, 10))
+sns.heatmap(cancer_df.corr(), vmin=-1, vmax=1, center=0, cmap=sns.diverging_palette(20, 220, n=200), square=True)
+ax.set_xticklabels(cancer_df.columns, rotation=45, horizontalalignment='right')
+ax.set_yticklabels(cancer_df.columns, rotation=45)
+fig.tight_layout()
+plt.savefig('figures/heatmap-all.png')
+plt.close()
+
+
+# def get_ax(df, column_name, suffix, x, label_group):
+#     if suffix == "error":
+#         s_column = f'{column_name} {suffix}'
+#     else:
+#         s_column = f'{suffix} {column_name}'
+#     sns.distplot(df[df['target'] == CONST_B][s_column], bins=10, kde=False, ax=axes[x, 0],
+#                  color='royalblue', label='Benign')
+#     sns.distplot(df[df['target'] == CONST_M][s_column], bins=10, kde=False, ax=axes[x, 0],
+#                  color='orange', label='Malignant')
+#     axes[x, 0].set_xlabel(column_name + ': Benign and Malignant')
+#     axes[x, 0].set_ylabel(label_group)
+#     #
+#     sns.distplot(df[df['target'] == CONST_B][s_column], bins=10, kde=False, ax=axes[x, 1],
+#                  color='royalblue', label='Benign')
+#     axes[x, 1].set_xlabel(column_name + ': Benign')
+#     #
+#     sns.distplot(df[df['target'] == CONST_M][s_column], bins=10, kde=False, ax=axes[x, 2],
+#                  color='orange', label='Malignant')
+#     axes[x, 2].set_xlabel(column_name + ': Malignant')
+#     #
+#     sns.boxplot(x=df['diagnosis_ds'], y=df[s_column], ax=axes[x, 3], order=['Benign', 'Malignant'])
+#     axes[x, 3].set_xlabel('Diagnosis')
+#     axes[x, 3].set_ylabel("")
+#     return axes[x, 3]
 
 #
 # for name_base in base_columns:

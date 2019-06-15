@@ -65,11 +65,24 @@ Describe feature statistics
     max      28.110000     39.280000      188.500000  2501.000000         0.163400          0.345400
 
 
-![Bar diagram by diagnose](./figures/AllGroupbyDiagnosis.png)
+###### Visualization of the data
+
+First let's take a look of the proportion of classes 0 for Bening and 1 for Malignant in the following chart and graph.
+   
+    Number of cells class 0 - Benign:       357
+    Number of cells class 1 - Malignant :   212
+    % of cells class 0 - Benign:            62.74 %
+    % of cells class 1 - Malignant:         37.26 %
+![Countplot](./figures/countplot.png)
+                       
+We can see that from the 569 observations, 357 or 62.7% are labeled as Benign and 212 or 37.2% are labeled as Malignant.
+   
+Now as the dataset has 30 features, a good way to check correlations between all the columns is by visualizing the correlation matrix as a heatmap
+![Heatmap](./figures/heatmap-all.png) 
 
 ![Correlation diagram](./figures/1-pairplot-hist-mean.png)
 
-For example: ![Diagram of the feature Concavity with its Mean, 
+![Diagram of the feature Concavity with its Mean, 
 Error and Worst attributes](./figures/concavity-Mean-Error-Worst.png)
 
 ### Methods
