@@ -29,9 +29,14 @@ print(f'keys: {cancer.keys()}')
 tmp = np.c_[cancer.data, cancer.target]
 cancer_df = pd.DataFrame(tmp, columns=feature_names)
 print(cancer_df.head())
+print(cancer_df.iloc[:,:6].describe())
+
 CONST_B = 1; CONST_M = 0
 cancer_df['diagnosis_ds'] = cancer_df['target'].map({CONST_B: 'Benign', CONST_M: 'Malignant'})
 base_columns = ['radius', 'texture', 'perimeter', 'area', 'smoothness', 'compactness', 'concavity', 'concave points', 'symmetry', 'fractal dimension']
+
+
+
 
 def get_ax(df, column_name, suffix, x, label_group):
     if suffix == "error":
@@ -58,27 +63,27 @@ def get_ax(df, column_name, suffix, x, label_group):
     axes[x, 3].set_ylabel("")
     return axes[x, 3]
 
-
-for name_base in base_columns:
-    fig, axes = plt.subplots(3, 4, figsize=(18, 12))
-    fig.suptitle(f'Analysis {name_base} : Mean, Error, Worst', fontsize=12)
-    # ====
-    # Mean
-    # ====
-    get_ax(cancer_df, column_name=name_base, suffix='mean', x=0, label_group="Mean")
-    # ====
-    # Error
-    # ====
-    get_ax(cancer_df, column_name=name_base, suffix='error', x=1, label_group="Error")
-    # ====
-    # Worst
-    # ====
-    get_ax(cancer_df, column_name=name_base, suffix='worst', x=2, label_group="Worst")
-    plt.legend()
-    plt.tight_layout()
-    plt.savefig(f'figures/{name_base}-Mean-Error-Worst.png')
-    plt.close()
-
+#
+# for name_base in base_columns:
+#     fig, axes = plt.subplots(3, 4, figsize=(18, 12))
+#     fig.suptitle(f'Analysis {name_base} : Mean, Error, Worst', fontsize=12)
+#     # ====
+#     # Mean
+#     # ====
+#     get_ax(cancer_df, column_name=name_base, suffix='mean', x=0, label_group="Mean")
+#     # ====
+#     # Error
+#     # ====
+#     get_ax(cancer_df, column_name=name_base, suffix='error', x=1, label_group="Error")
+#     # ====
+#     # Worst
+#     # ====
+#     get_ax(cancer_df, column_name=name_base, suffix='worst', x=2, label_group="Worst")
+#     plt.legend()
+#     plt.tight_layout()
+#     plt.savefig(f'figures/{name_base}-Mean-Error-Worst.png')
+#     plt.close()
+#
 
 
 

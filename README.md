@@ -1,5 +1,4 @@
-# cebd1160 final project: Breast cancer data
-Instructions and template for final projects.
+# cebd1160 final project: Breast cancer dataset
 
 | Name | Date |
 |:-------|:---------------|
@@ -8,7 +7,6 @@ Instructions and template for final projects.
 -----
 
 ### Resources
-Your repository should include the following:
 
 - Python script for your analysis: `classification_analysis.py`
 - Results figure/saved file: `figures/`
@@ -24,7 +22,7 @@ between PCA, KNN and Logistic Regression has more accuracy to predict the diagno
 
 ### Abstract
 
-Derived from UCI Machine Learning Repository, a brest cancer dataset is available and it represents the features computed 
+Derived from UCI Machine Learning Repository, a brest cancer dataset is freely available in python's sklearn library and it represents the features computed 
 from digitized image of a fine needle aspirate (FNA) of a breast mass.
 Using these dataset, the understanding of this characteristics and its relationships could impact in the prediction of malignant or bening cancer. 
 To achieve this I have used some machine learning classification methods to fit a function that can predict the discrete class of new input. 
@@ -43,7 +41,29 @@ Some statistics from 2017 are:
 The rate of incidence of breast cancer in Canada rose in the early of 90's but decreased in the early of 2000's and one of the reason was the use of mamography. 
 In addtion the death rate has been declining since the mid of 80's and this is the reflect of the improvement of screening and imaging.(*) 
 
-###### Analysing the dataset
+###### Description of the dataset
+The dataset is from the "Breast Cancer Wisconsin (Diagnostic) Database" freely available in python's sklearn library (https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29)
+
+Number of Samples: 569
+Number of Features: 30 numeric attributes
+Number of Classes: 2
+
+Ten real-valued features are computed for each cell nucleus. 
+The mean, standard error and 'worst' or largest (mean of the three largest values) of these features were computed for each image, resulting in 30 features. 
+For instance, the radius measurements are for the 'mean radius', 'standard error of the radius', and 'worst radius'. 
+
+Describe feature statistics
+
+           mean radius  mean texture   mean perimeter  mean area     mean smoothness  mean compactness
+    count   569.000000    569.000000      569.000000   569.000000       569.000000        569.000000
+    mean     14.127292     19.289649       91.969033   654.889104         0.096360          0.104341
+    std       3.524049      4.301036       24.298981   351.914129         0.014064          0.052813
+    min       6.981000      9.710000       43.790000   143.500000         0.052630          0.019380
+    25%      11.700000     16.170000       75.170000   420.300000         0.086370          0.064920
+    50%      13.370000     18.840000       86.240000   551.100000         0.095870          0.092630
+    75%      15.780000     21.800000      104.100000   782.700000         0.105300          0.130400
+    max      28.110000     39.280000      188.500000  2501.000000         0.163400          0.345400
+
 
 ![Bar diagram by diagnose](./figures/AllGroupbyDiagnosis.png)
 
