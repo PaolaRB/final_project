@@ -44,9 +44,9 @@ In addtion the death rate has been declining since the mid of 80's and this is t
 ###### Description of the dataset
 The dataset is from the "Breast Cancer Wisconsin (Diagnostic) Database" freely available in python's sklearn library (https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29)
 
-Number of Samples: 569
-Number of Features: 30 numeric attributes
-Number of Classes: 2
+    Number of Samples: 569
+    Number of Features: 30 numeric attributes/features
+    Number of Classes: 2
 
 Ten real-valued features are computed for each cell nucleus. 
 The mean, standard error and 'worst' or largest (mean of the three largest values) of these features were computed for each image, resulting in 30 features. 
@@ -79,11 +79,6 @@ We can see that from the 569 observations, 357 or 62.7% are labeled as Benign an
    
 Now as the dataset has 30 features, a good way to check correlations between all the columns is by visualizing the correlation matrix as a heatmap
 ![Heatmap](./figures/heatmap-all.png) 
-
-![Correlation diagram](./figures/1-pairplot-hist-mean.png)
-
-![Diagram of the feature Concavity with its Mean, 
-Error and Worst attributes](./figures/concavity-Mean-Error-Worst.png)
 
 ### Methods
 
