@@ -90,9 +90,59 @@ But before to use the PCA, we need to scale the dataset in order to have each fe
 - Logistic Regression Model
 - Accuracy of the model
 
+`Scale the dataset`
+
+        scaler = StandardScaler()
+        scaler.fit(X)
+        X_scaled = scaler.transform(X)
+ 
+`PCA - reduce feature`
+
+        pca = PCA(n_components=3)
+        pca.fit(X_scaled)
+        X_pca = pca.transform(X_scaled)
+        
+        print('shape of X_pca', X_pca.shape)
+        expl = pca.explained_variance_ratio_
+        print(expl)
+        print('sum of 2 components: ', sum(expl[0:2]))
+        print('sum of 3 components: ', sum(expl[0:3]))
+        
+        shape of X_pca (569, 3) 
+        [0.44272026 0.18971182 0.09393163]
+        sum of 2 components:  0.6324320765155929
+        sum of 3 components:  0.7263637090898976
 
 ![PCA-plot](./figures/pca-plot-n-4.png)
 ![PCA-scatter](./figures/pca-scatter-n-3.png)
+
+`Logistic Regression Model`
+
+First we need to split the data and we use the ratio of 0.35. In our case the train subdataset has 369 records and the Test subdataset has 200 records.
+        
+        X_train.shape : (369, 30), y_train.shape : (369,)
+        X_test.shape : (200, 30), y_test.shape : (200,)
+        Intercept per class: [0.24865834]
+             
+        Coeficients per class: [[-0.29977415 -0.52960362 -0.32794625 -0.43076019  0.04923918  0.35786804
+               -0.85080214 -0.75914363 -0.22669181  0.24262574 -1.3151279   0.30292613
+               -0.80117423 -0.89942787  0.37723735  0.9021331   0.20562958 -0.20817417
+                0.20599237  0.60046117 -0.83368415 -0.95678081 -0.72914745 -0.86124086
+               -0.88889321 -0.05175214 -0.75131017 -0.89889266 -0.4511914  -0.47978468]]
+
+After applying the Logistic Regression Model we have an accuracy score of 98% 
+       
+       Classification report
+       
+                     precision    recall  f1-score   support
+       
+                  0       1.00      0.96      0.98        74
+                  1       0.98      1.00      0.99       126
+       
+           accuracy                           0.98       200
+          macro avg       0.99      0.98      0.98       200
+       weighted avg       0.99      0.98      0.98       200
+
 
 
 ### Results
@@ -109,8 +159,9 @@ Brief (no more than 1-2 paragraph) description about what you did. Include:
 - interpretation of whether your method "solved" the problem
 - suggested next step that could make it better.
 
+
 ### References
-All of the links
-(*) https://www.cancer.ca/en/cancer-information/cancer-type/breast/statistics/?region=on
+https://scikit-learn.org/stable/datasets/index.html#breast-cancer-wisconsin-diagnostic-dataset
+https://www.cancer.ca/en/cancer-information/cancer-type/breast/statistics/?region=on
 https://towardsdatascience.com/dive-into-pca-principal-component-analysis-with-python-43ded13ead21
 https://rstudio-pubs-static.s3.amazonaws.com/344010_1f4d6691092d4544bfbddb092e7223d2.html

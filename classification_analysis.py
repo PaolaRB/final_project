@@ -82,8 +82,8 @@ X_pca = pca.transform(X_scaled)
 print('shape of X_pca', X_pca.shape)
 expl = pca.explained_variance_ratio_
 print(expl)
-print('sum  2: ', sum(expl[0:2]))
-print('sum  3: ', sum(expl[0:3]))
+print('sum of 2 components: ', sum(expl[0:2]))
+print('sum of 3 components: ', sum(expl[0:3]))
 
 plt.plot(np.cumsum(pca.explained_variance_ratio_))
 plt.xlabel('number of components')
@@ -99,8 +99,8 @@ X_pca = pca.transform(X_scaled)
 print('shape of X_pca', X_pca.shape)
 expl = pca.explained_variance_ratio_
 print(expl)
-print('sum  2: ', sum(expl[0:2]))
-print('sum  3: ', sum(expl[0:3]))
+print('sum of 2 components: ', sum(expl[0:2]))
+print('sum of 3 components: ', sum(expl[0:3]))
 
 plt.plot(np.cumsum(pca.explained_variance_ratio_))
 plt.xlabel('number of components')
@@ -139,52 +139,51 @@ print(f'X_train.shape : {X_train.shape}, y_train.shape : {y_train.shape}')
 print(f'X_test.shape : {X_test.shape}, y_test.shape : {y_test.shape}')
 
 
-# # ************************************
-# # ********** Training model***********
-# # ************************************
-#
-# lr = LogisticRegression(solver='lbfgs', multi_class='auto', max_iter=4000)
-# lr.fit(X_train, y_train)
-#
-# print(f'Intercept per class: {lr.intercept_}\n')
-# print(f'Coeficients per class: {lr.coef_}\n')
-# print(f'Available classes : {lr.classes_}\n')
-# print(f'Named Coeficients for class 0: {pd.DataFrame(lr.coef_[0], cancer.feature_names)}\n')
-# print(f'Number of iterations generating model : {lr.n_iter_}')
-#
-# # from sklearn.externals import joblib
-# # joblib.dump(lr, 'model.pkl')
-#
-# # ************************************
-# # ********** Predicting the results **
-# # ************************************
-#
-# predicted_values = lr.predict(X_test)
-#
-# for (real, predicted) in list(zip(y_test, predicted_values)):
-#     print(f'Value: {real}, pred:{predicted} {"is different " if real != predicted else ""}')
-#
-# # ************************************
-# # ********** Accuracy SCore **********
-# # ************************************
-# print(f'Accuracy score is {lr.score(X_test, y_test):.2f}/1 \n')
-#
-# # ************************************
-# # ******** Printing Reports **********
-# # ************************************
-# print('Classification report\n')
-# print(classification_report(y_test, predicted_values))
-# print('Confusion matrix\n')
-# print(confusion_matrix(y_test, predicted_values))
-# print('Overal f1-score\n')
-# print(f1_score(y_test, predicted_values, average="macro"))
-#
-#
-# # ************************************
-# # ******** Cross Validation **********
-# # ************************************
-# print(f'Cross_val_score before ShuffleSplit')
-# print(cross_val_score(lr, X, y, cv=10))
-# cv = ShuffleSplit(n_splits=5)
-# print(f'Cross_val_score after ShuffleSplit')
-# print(cross_val_score(lr, X, y, cv=cv))
+# ************************************
+# ********** Training model***********
+# ************************************
+
+lr = LogisticRegression(solver='lbfgs', multi_class='auto', max_iter=4000)
+lr.fit(X_train, y_train)
+
+print(f'Intercept per class: {lr.intercept_}\n')
+print(f'Coeficients per class: {lr.coef_}\n')
+print(f'Available classes : {lr.classes_}\n')
+print(f'Named Coeficients for class 0: {pd.DataFrame(lr.coef_[0], cancer.feature_names)}\n')
+print(f'Number of iterations generating model : {lr.n_iter_}')
+
+
+# ************************************
+# ********** Predicting the results **
+# ************************************
+
+predicted_values = lr.predict(X_test)
+
+for (real, predicted) in list(zip(y_test, predicted_values)):
+    print(f'Value: {real}, pred:{predicted} {"is different " if real != predicted else ""}')
+
+# ************************************
+# ********** Accuracy SCore **********
+# ************************************
+print(f'Accuracy score is {lr.score(X_test, y_test):.2f}/1 \n')
+
+
+# ************************************
+# ******** Printing Reports **********
+# ************************************
+print('Classification report\n')
+print(classification_report(y_test, predicted_values))
+print('Confusion matrix\n')
+print(confusion_matrix(y_test, predicted_values))
+print('Overal f1-score\n')
+print(f1_score(y_test, predicted_values, average="macro"))
+
+
+# ************************************
+# ******** Cross Validation **********
+# ************************************
+print(f'Cross_val_score before ShuffleSplit')
+print(cross_val_score(lr, X, y, cv=10))
+cv = ShuffleSplit(n_splits=5)
+print(f'Cross_val_score after ShuffleSplit')
+print(cross_val_score(lr, X, y, cv=cv))
