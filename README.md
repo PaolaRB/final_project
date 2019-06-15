@@ -17,15 +17,14 @@
 
 ## Research Question
 
-From the 30 atributes of breast cancer dataset, which attributes have more correlation and which not, and also which prediction model 
-between PCA, KNN and Logistic Regression has more accuracy to predict the diagnosis.
+From the 30 atributes of breast cancer dataset, which attributes have more correlation and which not and how accuracy the logistic regression model can predict the diagnosis.
 
 ### Abstract
 
 Derived from UCI Machine Learning Repository, a brest cancer dataset is freely available in python's sklearn library and it represents the features computed 
 from digitized image of a fine needle aspirate (FNA) of a breast mass.
 Using these dataset, the understanding of this characteristics and its relationships could impact in the prediction of malignant or bening cancer. 
-To achieve this I have used some machine learning classification methods to fit a function that can predict the discrete class of new input. 
+To achieve this I have used Logistic Regression Model to fit a function that can predict the discrete class of new input. 
 
 ### Introduction
 
@@ -82,10 +81,19 @@ Now as the dataset has 30 features, a good way to check correlations between all
 
 ### Methods
 
-Brief (no more than 1-2 paragraph) description about how you decided to approach solving it. Include:
+As the breast cancer dataset has 30 attributes, the first question that appears is: are all of them necessary to fit in a model? How could we prevent the overfiting?
+To answer this question, we can apply the PCA that is essentially a method to reduces the dimensions to a new group of variables called principal components. 
+But before to use the PCA, we need to scale the dataset in order to have each feature a unit variance. Then the Logistic Regression model will be fitted to obtain the function.
 
-- pseudocode for this method (either created by you or cited from somewhere else)
-- why you chose this method
+- Scale the dataset with StandardScaler
+- PCA reduce feature
+- Logistic Regression Model
+- Accuracy of the model
+
+
+![PCA-plot](./figures/pca-plot-n-4.png)
+![PCA-scatter](./figures/pca-scatter-n-3.png)
+
 
 ### Results
 
@@ -104,18 +112,5 @@ Brief (no more than 1-2 paragraph) description about what you did. Include:
 ### References
 All of the links
 (*) https://www.cancer.ca/en/cancer-information/cancer-type/breast/statistics/?region=on
-
-## Data
-
-The data set is from the "Breast Cancer Wisconsin (Diagnostic) Database" freely available in python's sklearn library, for details see:  
-https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29
-
-* Number of Samples: 569  
-* Number of Features: 30 numeric, predictive attributes  
-* Number of Classes: 2 
-
-Features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass. They describe characteristics of the cell nuclei present in the image. Ten real-valued features are computed for each cell nucleus. The mean, standard error and 'worst' or largest (mean of the three largest values) of these features were computed for each image, resulting in 30 features. For instance, the radius measurements are for the 'mean radius',  'standard error of the radius', and 'worst radius'. All feature values are recoded with four significant digits.
-
-The two target classes correspond to negative outcomes (Benign) and positive outcomes (Malignant).
-
-**This original data set will be randomly split into two sets for train and test purposes.**
+https://towardsdatascience.com/dive-into-pca-principal-component-analysis-with-python-43ded13ead21
+https://rstudio-pubs-static.s3.amazonaws.com/344010_1f4d6691092d4544bfbddb092e7223d2.html
