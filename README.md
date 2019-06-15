@@ -45,11 +45,12 @@ In addtion the death rate has been declining since the mid of 80's and this is t
 
 ###### Analysing the dataset
 
-`Bar diagram by` [View](./figures/AllGroupbyDiagnosis.png)
+![Bar diagram by diagnose](./figures/AllGroupbyDiagnosis.png)
 
-`Correlation diagram` [View](./figures/1-pairplot-hist-mean.png)
+![Correlation diagram](./figures/1-pairplot-hist-mean.png)
 
-For example: Diagram of the feature Concavity with its Mean, Error and Worst attributes [View](./figures/concavity-Mean-Error-Worst.png)
+For example: ![Diagram of the feature Concavity with its Mean, 
+Error and Worst attributes](./figures/concavity-Mean-Error-Worst.png)
 
 ### Methods
 
